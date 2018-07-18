@@ -63,56 +63,7 @@ public class VirtualMap {
 		}
 		return null;
 	}
-	
-	public Double calculateBase (PhysicalMap pm, Integer x, Integer y){
-		
-		
-		
-		
-		/*Double[] baseX = fillSide(pm.getWidth());
-		Double[] baseY = fillSide(pm.getLength());
-		
-		System.out.println(baseX);
-		System.out.println(baseY);
-		
-		Double base = baseX[x] * baseY[y];*/
-		
-		
-		return null;
-	}
-	
-	public Double fillSide(Integer sideLength, Integer value){
-		Double baseDouble = 1.0;
-		Double half = sideLength / 2.0;
-		Double step = sideLength / half;
-		
-		if(value > sideLength){
-			return 0.0;
-		}
-		
-		else if(value <= half){
-			return baseDouble + (step * value);
-		}
-		
-		else{
-			return (step *(sideLength - value)); 
-		}
-		
-		/*Double[] side = new Double[sideLength];
-		for(Integer i = 0; i < sideLength; i++){
-			side[i] = baseDouble;
-			if(i < sideLength/2){
-				baseDouble++;
-			}
-			
-			else{
-				baseDouble--;
-			}
-			
-		}*/
-		
-		
-	}
+
 
 
 }
