@@ -15,6 +15,7 @@ public class Main {
 			for(Integer l = 0; l < vm.getLength();l++){
 				for(Integer degree = 0 ; degree < 360; degree += DEGREE_STEPS) {
 					CostMap cm = vm.calculateCostMap(pm,w,l,degree);
+					costs[l][w][degree]= cm;
 				}
 				
 				

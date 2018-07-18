@@ -4,6 +4,7 @@ public class PhysicalMap {
 
 	private Integer width;
 	private Integer length;
+	private Double hyp;
 
 	/**
 	 * 
@@ -14,5 +15,32 @@ public class PhysicalMap {
 		this.width = width;
 		this.length = length;
 	}
+	
+	public Double getHyp(){
+		hyp = Math.hypot(width, length);
+		return hyp;
+	}
+	
+	public Double getSquareSide(){
+		//assumes square world
+		return (width/100.0);
+	}
+	/**
+	 * 
+	 * @return returns the width
+	 */
+	public Integer getWidth(){
+		return width;
+	}
+	
+	/**
+	 * 
+	 * @return returns the length
+	 */
+	public Integer getLength(){
+		return length;
+	}
+	
+	
 
 }
