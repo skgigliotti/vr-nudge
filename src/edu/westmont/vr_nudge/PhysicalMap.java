@@ -21,10 +21,7 @@ public class PhysicalMap {
 		return hyp;
 	}
 	
-	public Double getSquareSide(){
-		//assumes square world
-		return (width/100.0);
-	}
+	
 	/**
 	 * 
 	 * @return returns the width
