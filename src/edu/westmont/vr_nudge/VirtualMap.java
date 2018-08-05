@@ -7,8 +7,32 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class VirtualMap {
+	
+	Integer width;
+	Integer length;
+	BufferedImage outputMap;
 
 	public VirtualMap(String filename) {
+		
+		try{
+			
+			BufferedImage inputMap = ImageIO.read(new File(filename));
+			/*int color = ourMap.getRGB(0, 0);
+			System.out.println(color);*/
+			File output = new File("images/bit.bmp");
+			ImageIO.write(inputMap, "bmp", output);
+			outputMap = ImageIO.read(output);
+			
+			width = outputMap.getWidth();
+			length = outputMap.getHeight();
+	
+		
+		}
+		
+		catch(IOException e){
+			System.out.println("File not found");
+		}
+		
 	}
 
 	/**
@@ -16,8 +40,7 @@ public class VirtualMap {
 	 * @return the width of the virtual map in cm
 	 */
 	public Integer getWidth() {
-		// TODO Auto-generated method stub
-		return null;
+		return width;
 	}
 	
 	/**
@@ -25,8 +48,7 @@ public class VirtualMap {
 	 * @return the length of the virtual map in cm
 	 */
 	public Integer getLength() {
-		// TODO Auto-generated method stub
-		return null;
+		return length;
 	}
 
 	/**
@@ -39,21 +61,7 @@ public class VirtualMap {
 	 * @throws IOException 
 	 */
 	public CostMap calculateCostMap(PhysicalMap pm, Integer x, Integer y, Integer degree) throws IOException {
-		Boolean image = false;
-		/*Base*/
-		//read in the png map to generate a bit map
-		try{
-		BufferedImage ourMap = ImageIO.read(new File("images/kerr.png"));
-		File output = new File("images/bit.bmp");
-		ImageIO.write(image, "bmp", output);
-		System.out.println(output);
-		image = true;
-		}
-		
-		catch(IOException e){
-			System.out.println("File not found");
-		}
-		
+		outputMap.getRGB(x, y);
 		
 		return null;
 	}
@@ -63,7 +71,7 @@ public class VirtualMap {
 		
 		double dist = 0.0;
 	
-			
+/*			
 if(degree <= 45){
 	//distance from right-hand wall to location divided by cos of angle with x axis will return the hypotenuse which is the distance to the wall
 	dist = (pm.getWidth()-x) / (Math.cos(degree));
@@ -75,20 +83,20 @@ else if(degree <= 135){
 	dist = (pm.getLength()-y) / (Math.cos(degree-90));	
 }
 else if(degree <= 180){
-	dist = (pm.getWidth()) / (Math.cos(180-degree));	
+	dist = (x) / (Math.cos(180-degree));	
 }
 else if(degree <= 225){
-	dist = (pm.getWidth()) / (Math.cos(degree-180));
+	dist = (x) / (Math.cos(degree-180));
 }
 else if(degree <= 270){
-	dist = (pm.getLength()) / (Math.cos(270-degree));
+	dist = (y) / (Math.cos(270-degree));
 }
 else if(degree <= 315){
-	dist = (pm.getLength()) / (Math.cos(degree-270));
+	dist = (y) / (Math.cos(degree-270));
 }
 else{
 	dist = (pm.getWidth()-x) / (Math.cos(360-degree));
-}
+}*/
 		return dist;
 		
 	}
