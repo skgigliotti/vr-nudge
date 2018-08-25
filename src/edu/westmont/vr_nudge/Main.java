@@ -1,17 +1,19 @@
+
 package edu.westmont.vr_nudge;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 
 public class Main {
 
 	private static final int DEGREE_STEPS = 10;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		/*VirtualMap vm = new VirtualMap("filename");
 		PhysicalMap pm = new PhysicalMap(400,400);
@@ -19,39 +21,32 @@ public class Main {
 		Boolean image = false;*/
 		/*Base*/
 		//read in the png map to generate a bit map
-		try{
-	
-		BufferedImage ourMap = ImageIO.read(new File("images/kerr.png"));
-	
-		/*int color = ourMap.getRGB(0, 0);
-		System.out.println(color);*/
-		File output = new File("images/bit.bmp");
-		ImageIO.write(ourMap, "bmp", output);
+		VirtualMap vm = new VirtualMap("images/virtualMap.png");
 		
-		/*int colorBit = output;
-		System.out.println(colorBit);*/
 		
-		System.out.println(ourMap);
-		System.out.println(output);
-		
+		//just put the buffered image here to use in trying to make a black and white map
+		//for testing purposes
+		try {
+			vm.calculateCostMap(new PhysicalMap(400,400), 600, 750, 0);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		catch(IOException e){
-			System.out.println("File not found");
-		}
-		
-		/*for(Integer w = 0; w < vm.getWidth();w++) {
+		for(Integer w = 0; w < vm.getWidth();w++) {
 			for(Integer l = 0; l < vm.getLength();l++){
-				for(Integer degree = 0 ; degree < 360; degree += DEGREE_STEPS) {
+				/*for(Integer degree = 0 ; degree < 360; degree += DEGREE_STEPS) {
 					CostMap cm = vm.calculateCostMap(pm,w,l,degree);
-					costs[l][w][degree]= cm;
-				}
+				}*/
 				
 				
 			}
-		}*/
-		
-		
+		}
+	
+ 		
+ 	
+
+
 
 	}
 

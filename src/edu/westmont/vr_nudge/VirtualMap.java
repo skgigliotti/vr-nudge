@@ -17,8 +17,7 @@ public class VirtualMap {
 		try{
 			
 			BufferedImage inputMap = ImageIO.read(new File(filename));
-			/*int color = ourMap.getRGB(0, 0);
-			System.out.println(color);*/
+			
 			File output = new File("images/bit.bmp");
 			ImageIO.write(inputMap, "bmp", output);
 			outputMap = ImageIO.read(output);
@@ -50,6 +49,10 @@ public class VirtualMap {
 	public Integer getLength() {
 		return length;
 	}
+	
+	public BufferedImage getImage() {
+		return outputMap;
+	}
 
 	/**
 	 * 
@@ -61,8 +64,29 @@ public class VirtualMap {
 	 * @throws IOException 
 	 */
 	public CostMap calculateCostMap(PhysicalMap pm, Integer x, Integer y, Integer degree) throws IOException {
-		outputMap.getRGB(x, y);
+		BufferedImage finale=new BufferedImage(width, length, BufferedImage.TYPE_3BYTE_BGR);
 		
+		for(Integer w = 0; w < width;w++) {
+			for(Integer l = 0; l < length;l++){
+				int rgbVal = outputMap.getRGB(w, l);
+				int red = (rgbVal >> 16) & 0xFF;
+				int green = (rgbVal >> 8) & 0xFF;
+				int blue = (rgbVal & 0xFF);
+				
+				//convert the rgb value to greyscale and normalize it
+				int grey = ((red + green + blue) / 3) / 255;
+				if(grey == 1){
+					grey = 255;
+				}
+				System.out.println(grey);
+				finale.setRGB(w,l,(byte)grey);
+				
+				
+			}
+			
+		}
+		
+		ImageIO.write(finale, "jpg", new File("output.jpg"));
 		return null;
 	}
 	
@@ -70,33 +94,6 @@ public class VirtualMap {
 		//TODO: implement everything
 		
 		double dist = 0.0;
-	
-/*			
-if(degree <= 45){
-	//distance from right-hand wall to location divided by cos of angle with x axis will return the hypotenuse which is the distance to the wall
-	dist = (pm.getWidth()-x) / (Math.cos(degree));
-}
-else if(degree <= 90){
-	dist = (pm.getLength()-y) / (Math.cos(90-degree));
-}
-else if(degree <= 135){
-	dist = (pm.getLength()-y) / (Math.cos(degree-90));	
-}
-else if(degree <= 180){
-	dist = (x) / (Math.cos(180-degree));	
-}
-else if(degree <= 225){
-	dist = (x) / (Math.cos(degree-180));
-}
-else if(degree <= 270){
-	dist = (y) / (Math.cos(270-degree));
-}
-else if(degree <= 315){
-	dist = (y) / (Math.cos(degree-270));
-}
-else{
-	dist = (pm.getWidth()-x) / (Math.cos(360-degree));
-}*/
 		return dist;
 		
 	}
