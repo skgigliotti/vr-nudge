@@ -1,6 +1,7 @@
 package edu.westmont.vr_nudge;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
 
@@ -66,6 +67,14 @@ public class VirtualMap {
 	public CostMap calculateCostMap(PhysicalMap pm, Integer x, Integer y, Integer degree) throws IOException {
 		BufferedImage finale=new BufferedImage(width, length, BufferedImage.TYPE_3BYTE_BGR);
 		
+		
+		
+		
+		
+
+		//go through each point in the virtual map
+		//if the point is colored, make the point black
+		//if the point is white, it will remain white
 		for(Integer w = 0; w < width;w++) {
 			for(Integer l = 0; l < length;l++){
 				int rgbVal = outputMap.getRGB(w, l);
@@ -78,10 +87,25 @@ public class VirtualMap {
 				if(grey == 1){
 					grey = 255;
 				}
-				System.out.println(grey);
+				
 				finale.setRGB(w,l,(byte)grey);
 				
 				
+			}
+			
+		}
+		
+		//pixels of the virtual world
+		byte[] pixels = ((DataBufferByte) finale.getRaster().getDataBuffer()).getData();
+		
+		//make a white square for the physical world, just a concept of the first 1600 are white and rest are black
+		byte[] pixels2 = ((DataBufferByte) finale.getRaster().getDataBuffer()).getData();
+		for(int i=0; i < pixels2.length; i++){
+			if(i < (pm.getLength() * pm.getWidth())){
+				pixels2[i] = 1;
+			}
+			else{
+				pixels2[i] = 0;
 			}
 			
 		}
@@ -99,5 +123,7 @@ public class VirtualMap {
 	}
 
 
-
+// make array of 0 and 1 for virtual map and physical map and & the two
+	//want physical map layer to be same size as virtual
+	//for now in the top left corner
 }

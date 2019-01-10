@@ -11,12 +11,12 @@ import javax.imageio.ImageIO;
 
 public class Main {
 
-	private static final int DEGREE_STEPS = 10;
+	private static final int DEGREE_STEPS = 90;
 
 	public static void main(String[] args) throws IOException {
-		
-		/*VirtualMap vm = new VirtualMap("filename");
 		PhysicalMap pm = new PhysicalMap(400,400);
+		/*VirtualMap vm = new VirtualMap("filename");
+		
 		CostMap costs[][][] = new CostMap[vm.getLength()][vm.getWidth()][360/DEGREE_STEPS];
 		Boolean image = false;*/
 		/*Base*/
@@ -27,7 +27,7 @@ public class Main {
 		//just put the buffered image here to use in trying to make a black and white map
 		//for testing purposes
 		try {
-			vm.calculateCostMap(new PhysicalMap(400,400), 600, 750, 0);
+			vm.calculateCostMap(new PhysicalMap(500,500), 200, 200, 0);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -35,9 +35,9 @@ public class Main {
 		
 		for(Integer w = 0; w < vm.getWidth();w++) {
 			for(Integer l = 0; l < vm.getLength();l++){
-				/*for(Integer degree = 0 ; degree < 360; degree += DEGREE_STEPS) {
+				for(Integer degree = 0 ; degree < 360; degree += DEGREE_STEPS) {
 					CostMap cm = vm.calculateCostMap(pm,w,l,degree);
-				}*/
+				}
 				
 				
 			}
